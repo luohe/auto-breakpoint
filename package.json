@@ -1,0 +1,59 @@
+{
+  "name": "auto-breakpoint",
+  "displayName": "auto-breakpoint",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.92.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "Breakpoint Setter Configuration",
+      "properties": {
+        "breakpointSetter.filesToInclude": {
+          "type": "string",
+          "default": "packages/**/*.js",
+          "description": "Glob pattern for files to include in the search (like in files to include in the search panel)."
+        },
+        "breakpointSetter.filesToExclude": {
+          "type": "string",
+          "default": "packages/**/ReactDOMLegacy.js,packages/**/__tests__,./packages/**/*.new.js,./packages/react-art/**,./packages/react-noop-renderer/**,./packages/react-native-renderer/**,./packages/react-test-renderer/**,.history,node_modules,react-server",
+          "description": "Glob pattern for files to exclude from the search (like in files to exclude in the search panel)."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "extension.setBreakpointsInFiles",
+        "title": "Set Breakpoints in Files"
+      }
+    ]
+  },
+  "activationEvents": [
+    "onCommand:extension.setBreakpointsInFiles"
+  ],
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.92.0",
+    "@types/mocha": "^10.0.7",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.11.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.4.0"
+  }
+}
