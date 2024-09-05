@@ -103,27 +103,13 @@ async function findAndRemoveBreakpoints(searchString: string) {
     const breakpoints = vscode.debug.breakpoints as vscode.SourceBreakpoint[];
     let removedCount = 0;
 
-    // 获取所有打开的文档
-    const documents = await vscode.workspace.findFiles('**/*', '');
-    const fileMap = new Map<string, vscode.TextDocument>();
-
-    // 将每个打开的文档缓存到文件映射中
-    await Promise.all(documents.map(async (file) => {
-        try {
-            const document = await vscode.workspace.openTextDocument(file);
-            fileMap.set(file.fsPath, document);
-        } catch (error) {
-            console.error(`Error opening file ${file.fsPath}:`, error);
-        }
-    }));
-
     // 遍历所有断点并尝试移除符合条件的断点
     await Promise.all(breakpoints.map(async (breakpoint) => {
         const uri = breakpoint.location.uri.fsPath;
         const line = breakpoint.location.range.start.line;
 
         // 查找文件中匹配的行
-        const document = fileMap.get(uri);
+        const document = await vscode.workspace.openTextDocument(uri);
         if (document) {
             const text = document.getText();
             const regex = new RegExp(searchString, 'g');
