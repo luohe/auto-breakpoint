@@ -1,8 +1,8 @@
 {
   "name": "auto-breakpoint",
-  "displayName": "auto-breakpoint",
+  "displayName": "Auto Breakpoint",
   "description": "",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.92.0"
   },
@@ -30,26 +30,26 @@
     },
     "commands": [
       {
-          "command": "extension.setBreakpointsInFiles",
-          "title": "Set Breakpoints in Files",
-          "category": "Breakpoint Setter"
+        "command": "extension.setBreakpointsInFiles",
+        "title": "Set Breakpoints in Files",
+        "category": "Breakpoint Setter"
       },
       {
-          "command": "extension.removeAllBreakpoints",
-          "title": "Remove All Breakpoints",
-          "category": "Breakpoint Setter"
+        "command": "extension.removeAllBreakpoints",
+        "title": "Remove All Breakpoints",
+        "category": "Breakpoint Setter"
       },
       {
-          "command": "extension.removeBreakpointsByKeyword",
-          "title": "Remove Breakpoints by Keyword",
-          "category": "Breakpoint Setter"
+        "command": "extension.removeBreakpointsByKeyword",
+        "title": "Remove Breakpoints by Keyword",
+        "category": "Breakpoint Setter"
       }
     ]
   },
   "activationEvents": [
-      "onCommand:extension.setBreakpointsInFiles",
-      "onCommand:extension.removeAllBreakpoints",
-      "onCommand:extension.removeBreakpointsByKeyword"
+    "onCommand:extension.setBreakpointsInFiles",
+    "onCommand:extension.removeAllBreakpoints",
+    "onCommand:extension.removeBreakpointsByKeyword"
   ],
   "scripts": {
     "vscode:prepublish": "npm run compile",
